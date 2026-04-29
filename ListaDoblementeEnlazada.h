@@ -1,20 +1,26 @@
 #ifndef __LISTA_H
 #define __LISTA_H
 
-typedef struct NodoD {
-    int dato;
-    struct NodoD* sig;
-    struct NodoD* ant;
-}:
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef struct {
-    NodoD* cabeza;
-}ListaDoblementeEnlazada;
+struct nodo {
+	void *dato;
+	struct nodo *ptr_sig;
+	struct nodo *ptr_ant;
+};
 
-void iniciar(ListaDoblementeEnlazada* lista);
-void insertarInicio(ListaDoblementeEnlazada* lista,int valor);
-void insertarFinal(ListaDoblementeEnlazada* lista,int valor);
-int buscar(ListaDoblementeEnlazada* lista,int valor);
-int eliminar(ListaDoblementeEnlazada* lista,int valor);
+typedef struct nodo Nodo;
+typedef unsigned long int iClave;
+
+int estaVacia( Nodo* );
+Nodo *crearMemoria( void *, Nodo*, Nodo* );
+void insertarAlFrente( Nodo**, Nodo**, void* );
+void insertarAlFinal ( Nodo**, Nodo**, void* );
+void *removerAlFrente( Nodo**, Nodo**, int* );
+void imprimirLista( Nodo*, void (*func)( void* ) );
+int contarElementosLista( Nodo* );
+int buscarDentroDeLista( Nodo*, int (*func)( void*, void* ), void*, void** );
+void buscarDentroDeLista( Nodo *, int (*func)( void*, void* ), void*, Nodo**, Nodo** );
 
 #endif
